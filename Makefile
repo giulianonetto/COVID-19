@@ -4,13 +4,7 @@ include ./help.mk
 image := 3778/covid-19
 
 launch:
-	streamlit run app.py
-
-data-launch:
-	streamlit run data/data_app.py
-
-collect:
-	python data/collectors.py
+	streamlit run simulator/app.py
 
 bin/gh-md-toc:
 	mkdir -p bin
