@@ -1,9 +1,10 @@
-images:
-- gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA
-
 steps:
-- name: 3778/covid-19
+- name: gcr.io/cloud-builders/docker
+  args: ['build', '.', '-t', 'test']
+- name: test
   args: ['pytest', '--doctest-modules', '--verbose', 'covid19/']
 - name: gcr.io/cloud-builders/docker
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA', '.']
-  timeout: 240s
+  args: ['build', '.', '-t', 'gcr.io/$PROJECT_ID/covid19:$SHORT_SHA']
+
+images:
+- gcr.io/$PROJECT_ID/covid19:$SHORT_SHA
